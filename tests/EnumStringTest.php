@@ -5,6 +5,7 @@ namespace Tests\Mediagone\Types\Enums;
 use LogicException;
 use Mediagone\Types\Enums\EnumString;
 use PHPUnit\Framework\TestCase;
+use Tests\Mediagone\Types\Enums\Fakes\EnumIntBar;
 use Tests\Mediagone\Types\Enums\Fakes\EnumStringBar;
 use Tests\Mediagone\Types\Enums\Fakes\EnumStringBaz;
 use Tests\Mediagone\Types\Enums\Fakes\EnumStringInvalidDouble;
@@ -31,10 +32,15 @@ final class EnumStringTest extends TestCase
     
     public function test_can_get_value_as_integer() : void
     {
-        $one = EnumStringBar::ONE();
-        
-        self::assertIsString($one->value);
-        self::assertSame('one', $one->value);
+        self::assertSame('one', EnumStringBar::ONE()->value);
+        self::assertSame('two', EnumStringBar::TWO()->value);
+    }
+    
+    
+    public function test_can_get_name() : void
+    {
+        self::assertSame('ONE', EnumIntBar::ONE()->name);
+        self::assertSame('TWO', EnumIntBar::TWO()->name);
     }
     
     

@@ -31,10 +31,15 @@ final class EnumIntTest extends TestCase
     
     public function test_can_get_value_as_integer() : void
     {
-        $one = EnumIntBar::ONE();
-        
-        self::assertIsInt($one->value);
-        self::assertSame(1, $one->value);
+        self::assertSame(1, EnumIntBar::ONE()->value);
+        self::assertSame(2, EnumIntBar::TWO()->value);
+    }
+    
+    
+    public function test_can_get_name() : void
+    {
+        self::assertSame('ONE', EnumIntBar::ONE()->name);
+        self::assertSame('TWO', EnumIntBar::TWO()->name);
     }
     
     
