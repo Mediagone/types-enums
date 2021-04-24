@@ -52,14 +52,14 @@ $ composer require mediagone/types-enums
 ### Simple usage
 
 First of all, create an enum class that defines your enumerable values as **private constants**: \
-_Note: add static method annotatations to your class to enable autocompletion in your favorite IDE._
+_Note: add static method annotations to your class to enable autocompletion in your favorite IDE._
 
 ```php
 /**
  * @method static ArticleStatus DRAFT()
  * @method static ArticleStatus PUBLISHED()
  */
-final class ArticleStatus extends Enum
+final class ArticleStatus extends EnumInt
 {
     private const DRAFT = 0;
     private const PUBLISHED = 1;
@@ -94,6 +94,24 @@ class Article
 $article->changeStatus(ArticleStatus::PUBLISHED()); // valid
 $article->changeStatus(1); // invalid
 ```
+
+
+
+### Enum informations
+
+You can access enum underlying value and name by using `->value` and `->name` properties:
+
+```php
+final class ArticleStatus extends EnumInt
+{
+    private const DRAFT = 0;
+    private const PUBLISHED = 1;
+}
+
+ArticleStatus::PUBLISHED()->value; // 1
+ArticleStatus::PUBLISHED()->name; // "PUBLISHED"
+```
+
 
 
 ## License
