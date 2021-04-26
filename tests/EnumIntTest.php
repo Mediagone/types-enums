@@ -83,6 +83,12 @@ final class EnumIntTest extends TestCase
     }
     
     
+    public function test_can_get_cases() : void
+    {
+        self::assertSame([EnumIntBar::ONE(), EnumIntBar::TWO()], EnumIntBar::cases());
+    }
+    
+    
     
     //========================================================================================================
     // Serialization

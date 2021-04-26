@@ -82,7 +82,7 @@ abstract class Enum implements JsonSerializable, Serializable
      */
     final public static function cases() : array
     {
-        return self::getEnumInstances(static::class);
+        return array_values(self::getEnumInstances(static::class));
     }
     
     

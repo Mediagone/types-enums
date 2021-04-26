@@ -83,6 +83,12 @@ final class EnumStringTest extends TestCase
     }
     
     
+    public function test_can_get_cases() : void
+    {
+        self::assertSame([EnumStringBar::ONE(), EnumStringBar::TWO()], EnumStringBar::cases());
+    }
+    
+    
     
     //========================================================================================================
     // Tests
