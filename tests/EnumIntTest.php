@@ -31,6 +31,23 @@ final class EnumIntTest extends TestCase
     }
     
     
+    public function test_can_be_created_from_name() : void
+    {
+        $one = EnumIntBar::ONE();
+    
+        self::assertTrue($one === EnumIntBar::fromName($one->name));
+        self::assertTrue($one === EnumIntBar::fromName('ONE'));
+        self::assertTrue($one !== EnumIntBar::fromName('TWO'));
+    }
+    
+    
+    public function test_cannot_be_created_from_invalid_name() : void
+    {
+        $this->expectException(LogicException::class);
+        EnumIntBar::fromName('WHAT');
+    }
+    
+    
     public function test_can_get_value_as_integer() : void
     {
         self::assertSame(1, EnumIntBar::ONE()->value);

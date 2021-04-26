@@ -54,6 +54,12 @@ abstract class Enum implements JsonSerializable, Serializable
     abstract protected static function checkEnumConstantDefinitions(array $definitions) : void;
     
     
+    final public static function fromName(string $constantName) : self
+    {
+        return static::$constantName();
+    }
+    
+    
     
     //========================================================================================================
     // Static Methods
