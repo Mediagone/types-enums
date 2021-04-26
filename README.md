@@ -4,6 +4,17 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Software License][ico-license]](LICENSE)
 
+
+
+## Installation
+This package requires **PHP 7.4+**
+
+Add it as Composer dependency:
+```sh
+$ composer require mediagone/types-enums
+```
+
+
 ## Introduction
 
 Using constants to represent enumerable values is unsafe unless we provide sufficient checks to prevent any problem:
@@ -35,16 +46,6 @@ $article->changeStatus(OtherClass::SOME_INT_CONSTANT); // valid but senseless
 Using **strongly typed Enums** instead of PHP primitive types (int, string) allows to safely typehint them everywhere and ensure that your data is valid without adding any check in your code.
 
 Unfortunately, PHP doesn't provide native enums prior to 8.1, but they can be emulated using classes.
-
-
-## Installation
-This package requires **PHP 7.4+**
-
-Add it as Composer dependency:
-```sh
-$ composer require mediagone/types-enums
-```
-
 
 
 ## Documentation
@@ -111,6 +112,28 @@ final class ArticleStatus extends EnumInt
 ArticleStatus::PUBLISHED()->value; // 1
 ArticleStatus::PUBLISHED()->name; // "PUBLISHED"
 ```
+
+### Serialization
+
+Because the PHP serialization mechanism doesn't allow to define which instance is restored, it totally breaks how the library works and strict comparison:
+```php
+$a = unserialize(serialize(ArticleStatus::PUBLISHED()));
+$b = ArticleStatus::PUBLISHED();
+
+$a === $b; // false
+```
+
+That's why `serialize()` and `unserialize()` are blocked for all enums classes.
+
+If you need to deal with serialization, you'll have to store the **enum's value** and restore it afterward manually:
+
+```php
+$serializedValue = ArticleStatus::PUBLISHED()->value;
+
+// restore the enum
+$enum = ArticleStatus::from($serializedValue);
+```
+_Note: using enum's name for serialization is not recommended since code refactoring might break it anytime._
 
 
 
