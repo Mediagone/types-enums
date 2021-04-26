@@ -5,10 +5,12 @@ namespace Tests\Mediagone\Types\Enums;
 use LogicException;
 use Mediagone\Types\Enums\EnumInt;
 use PHPUnit\Framework\TestCase;
-use Tests\Mediagone\Types\Enums\Fakes\EnumIntInvalidDouble;
 use Tests\Mediagone\Types\Enums\Fakes\EnumIntBar;
 use Tests\Mediagone\Types\Enums\Fakes\EnumIntBaz;
+use Tests\Mediagone\Types\Enums\Fakes\EnumIntInvalidDouble;
 use Tests\Mediagone\Types\Enums\Fakes\EnumIntInvalidString;
+use function is_subclass_of;
+use function serialize;
 
 
 /**
@@ -66,7 +68,7 @@ final class EnumIntTest extends TestCase
     
     
     //========================================================================================================
-    // Tests
+    // Serialization
     //========================================================================================================
     
     public function test_cannot_declare_string_const() : void
@@ -80,6 +82,13 @@ final class EnumIntTest extends TestCase
     {
         $this->expectException(LogicException::class);
         EnumIntInvalidDouble::DOUBLE();
+    }
+    
+    
+    public function test_cannot_be_serialized() : void
+    {
+        $this->expectException(LogicException::class);
+        serialize(EnumIntBar::ONE());
     }
     
     

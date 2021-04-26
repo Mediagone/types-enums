@@ -5,13 +5,14 @@ namespace Mediagone\Types\Enums;
 use JsonSerializable;
 use LogicException;
 use ReflectionClass;
+use Serializable;
 use function array_keys;
 use function array_map;
 use function count;
 use function implode;
 
 
-abstract class Enum implements JsonSerializable
+abstract class Enum implements JsonSerializable, Serializable
 {
     //========================================================================================================
     // Static properties
@@ -177,6 +178,22 @@ abstract class Enum implements JsonSerializable
             
             throw new LogicException('Duplicate enum values (' . $formattedValues . ') in "' . static::class . '".');
         }
+    }
+    
+    
+    //========================================================================================================
+    // Serializable interface
+    //========================================================================================================
+    
+    final public function serialize() : ?string
+    {
+        throw new LogicException('Enums cannot be serialized.');
+    }
+    
+    
+    final public function unserialize($serialized) : void
+    {
+        throw new LogicException('Enums cannot be unserialized.');
     }
     
     

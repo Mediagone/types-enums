@@ -5,11 +5,12 @@ namespace Tests\Mediagone\Types\Enums;
 use LogicException;
 use Mediagone\Types\Enums\EnumString;
 use PHPUnit\Framework\TestCase;
-use Tests\Mediagone\Types\Enums\Fakes\EnumIntBar;
 use Tests\Mediagone\Types\Enums\Fakes\EnumStringBar;
 use Tests\Mediagone\Types\Enums\Fakes\EnumStringBaz;
 use Tests\Mediagone\Types\Enums\Fakes\EnumStringInvalidDouble;
 use Tests\Mediagone\Types\Enums\Fakes\EnumStringInvalidInt;
+use function is_subclass_of;
+use function serialize;
 
 
 /**
@@ -39,8 +40,8 @@ final class EnumStringTest extends TestCase
     
     public function test_can_get_name() : void
     {
-        self::assertSame('ONE', EnumIntBar::ONE()->name);
-        self::assertSame('TWO', EnumIntBar::TWO()->name);
+        self::assertSame('ONE', EnumStringBar::ONE()->name);
+        self::assertSame('TWO', EnumStringBar::TWO()->name);
     }
     
     
@@ -81,6 +82,13 @@ final class EnumStringTest extends TestCase
     {
         $this->expectException(LogicException::class);
         EnumStringInvalidDouble::DOUBLE();
+    }
+    
+    
+    public function test_cannot_be_serialized() : void
+    {
+        $this->expectException(LogicException::class);
+        serialize(EnumStringBar::ONE());
     }
     
     
