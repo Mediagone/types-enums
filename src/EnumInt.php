@@ -2,7 +2,6 @@
 
 namespace Mediagone\Types\Enums;
 
-use JsonSerializable;
 use LogicException;
 use function is_int;
 
