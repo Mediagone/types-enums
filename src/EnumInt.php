@@ -7,6 +7,9 @@ use LogicException;
 use function is_int;
 
 
+/**
+ * @property int $value
+ */
 abstract class EnumInt extends Enum
 {
     //========================================================================================================

@@ -12,6 +12,9 @@ use function count;
 use function implode;
 
 
+/**
+ * @property string $name
+ */
 abstract class Enum implements JsonSerializable, Serializable
 {
     //========================================================================================================

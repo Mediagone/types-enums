@@ -6,6 +6,9 @@ use LogicException;
 use function is_string;
 
 
+/**
+ * @property string $value
+ */
 abstract class EnumString extends Enum
 {
     //========================================================================================================
