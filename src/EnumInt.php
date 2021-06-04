@@ -15,6 +15,9 @@ abstract class EnumInt extends Enum
     // Constructors
     //========================================================================================================
     
+    /**
+     * @return static
+     */
     final public static function from(int $value) : self
     {
         $instances = self::getEnumInstancesByValue(static::class);

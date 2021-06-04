@@ -15,6 +15,9 @@ abstract class EnumString extends Enum
     // Constructors
     //========================================================================================================
     
+    /**
+     * @return static
+     */
     final public static function from(string $value) : self
     {
         $instances = self::getEnumInstancesByValue(static::class);
