@@ -13,7 +13,8 @@ use function implode;
 
 
 /**
- * @property string $name
+ * @property-read string $name
+ * @property-read string $value
  */
 abstract class Enum implements JsonSerializable, Serializable
 {
